@@ -1,19 +1,23 @@
 #!/bin/bash
+
 echo "=================================================="
 if [ ! $domain ]; then
         read -p "Enter link to domain name: " domain
         echo 'export domain='${domain} >> $HOME/.bash_profile
 fi
 curl $domain
-echo "=================================================="
 echo "Domain name configured"
+
 echo "=================================================="
 curl -Lo /usr/local/bin/dumbproxy 'https://github.com/Snawoot/dumbproxy/releases/download/v1.6.1/dumbproxy.linux-amd64' && chmod +x /usr/local/bin/dumbproxy
-echo "=================================================="
 echo "App downloaded"
+
+echo "=================================================="
 dumbproxy -passwd /etc/dumbproxy.htpasswd necobra Sanya#777!
 echo 'OPTIONS=-auth basicfile://?path=/etc/dumbproxy.htpasswd -autocert -bind-address :443' >> /etc/default/dumbproxy
 echo "App configured"
+
+echo "=================================================="
 echo "[Unit]
 Description=Dumb Proxy
 Documentation=https://github.com/Snawoot/dumbproxy/
@@ -36,6 +40,8 @@ WantedBy=default.target
 
 
 systemctl daemon-reload
+systemctl enable dumbproxy
 systemctl start dumbproxy
 
 echo "Service created and started"
+echo "=================================================="
