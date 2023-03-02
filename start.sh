@@ -38,4 +38,4 @@ WantedBy=default.target
 systemctl daemon-reload
 systemctl start dumbproxy
 
-echo "Service created"
+echo "Service created and started"
